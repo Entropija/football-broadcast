@@ -3,8 +3,10 @@ namespace App\Entity;
 
 class Player
 {
-    private const PLAY_PLAY_STATUS = 'play';
+    private const PLAY_PLAY_STATUS  = 'play';
     private const BENCH_PLAY_STATUS = 'bench';
+    private const YELLOW_CARD_TYPE  = 'yellowCard';
+    private const RED_CARD_TYPE     = 'redCard';
 
     private int $number;
     private string $name;
@@ -12,6 +14,7 @@ class Player
     private int $inMinute;
     private int $outMinute;
     private int $goal;
+    private array $cards;
 
     public function __construct(int $number, string $name)
     {
@@ -21,6 +24,10 @@ class Player
         $this->inMinute = 0;
         $this->outMinute = 0;
         $this->goal = 0;
+        $this->cards = [
+            self::YELLOW_CARD_TYPE => 0,
+            self::RED_CARD_TYPE => 0
+        ];
     }
 
     public function getNumber(): int
@@ -46,6 +53,11 @@ class Player
     public function getGoal(): int
     {
         return $this->goal;
+    }
+
+    public function getCards(): array
+    {
+        return $this->cards;
     }
 
     public function isPlay(): bool
@@ -78,5 +90,14 @@ class Player
     {
         $this->goal += 1;
     }
+
+    public function addCard(string $type): void
+    {
+        if (array_key_exists($type, $this->cards)) 
+        {
+            $this->cards[$type] += 1;
+        } 
+    }
+    
 
 }
