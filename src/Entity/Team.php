@@ -11,6 +11,7 @@ class Team
      * @var Player[]
      */
     private array $players;
+    private array $timePositions;
     private string $coach;
     private int $goals;
 
@@ -22,13 +23,29 @@ class Team
         $this->country = $country;
         $this->logo = $logo;
         $this->players = $players;
+        $this->timePositions = [];
         $this->coach = $coach;
         $this->goals = 0;
     }
 
-    public function getName(): string
+    public function getName(): string 
     {
         return $this->name;
+    }
+
+    public function getTimePositions(): array
+    {
+        $time = [
+            'В' => 0,
+            'З' => 0,
+            'П' => 0,
+            'Н' => 0
+        ];
+
+        foreach ($this->players as $player) {
+            $time[$player->getPosition()] += $player->getPlayTime();
+        }
+        return $time;
     }
 
     public function getCountry(): string

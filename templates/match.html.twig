@@ -53,6 +53,36 @@
                 </div>
             </div>
 
+            <div class="card mb-3">
+                <div class="card-header">
+                Статистика по позициям
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            {% set team = match.homeTeam %}   
+                            <div class="card-body">
+                                <strong>{{ team.name }}</strong>
+                                <div>Вратарь: {{ team.timePositions['В'] }}’</div>
+                                <div>Защитники: {{ team.timePositions['З'] }}’</div>
+                                <div>Полузащитники: {{ team.timePositions['П'] }}’</div>
+                                <div>Нападающие: {{ team.timePositions['Н'] }}’</div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            {% set team = match.awayTeam %}
+                            <div class="card-body">
+                                <strong>{{ team.name }}</strong>
+                                <div>Вратарь: {{ team.timePositions['В'] }}’</div>
+                                <div>Защитники: {{ team.timePositions['З'] }}’</div>
+                                <div>Полузащитники: {{ team.timePositions['П'] }}’</div>
+                                <div>Нападающие: {{ team.timePositions['Н'] }}’</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="card">
                 <div class="card-header">
                     Трансляция
